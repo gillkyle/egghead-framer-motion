@@ -6,8 +6,8 @@ import Layout from "../../components/layout"
 import Section from "../../components/section"
 import PlayButton from "../../components/play-button"
 
-export default () => (
-  <Layout>
+export default ({ location }) => (
+  <Layout location={location}>
     <Section>
       <motion.div whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }}>
         <PlayButton />

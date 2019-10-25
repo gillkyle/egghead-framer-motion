@@ -6,8 +6,8 @@ import { FiLoader } from "react-icons/fi"
 import Layout from "../../components/layout"
 import Section from "../../components/section"
 
-export default () => (
-  <Layout>
+export default ({ location }) => (
+  <Layout location={location}>
     <Section>
       <motion.div
         initial={{ scale: 1.0, opacity: 0.25 }}

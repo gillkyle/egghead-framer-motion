@@ -6,8 +6,8 @@ import Layout from "../../components/layout"
 import Section from "../../components/section"
 import { FiCrosshair } from "react-icons/fi"
 
-export default () => (
-  <Layout>
+export default ({ location }) => (
+  <Layout location={location}>
     <Section canReset={true}>
       <motion.div
         animate={{

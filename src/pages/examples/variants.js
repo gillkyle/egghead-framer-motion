@@ -41,11 +41,11 @@ const childVariants = {
   closed: { opacity: 0 },
 }
 
-export default () => {
+export default ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section>
         <motion.div
           sx={{ ...containerStyles }}

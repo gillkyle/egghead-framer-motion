@@ -7,11 +7,11 @@ import { FiArrowUpCircle } from "react-icons/fi"
 import Layout from "../../components/layout"
 import Section from "../../components/section"
 
-export default () => {
+export default ({ location }) => {
   const [rotation, toggleRotation] = useState(0)
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section>
         <motion.div
           animate={{ rotate: rotation }}

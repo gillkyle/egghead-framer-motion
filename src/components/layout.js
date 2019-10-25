@@ -6,7 +6,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query LayoutQuery {
       site {
@@ -24,6 +24,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
+  const locationTitle = location.pathname.slice(
+    10,
+    location.pathname.length - 1
+  )
   return (
     <div>
       <Header siteTitle={data.site.siteMetadata.title} />
@@ -44,27 +48,31 @@ const Layout = ({ children }) => {
             mb: 20,
           }}
         >
-          {data.examples.edges.map(({ node }, index) => (
-            <Link
-              key={index}
-              sx={{
-                padding: `0.5rem`,
-                textDecoration: "none",
-                color: "bright",
-                fontWeight: 700,
-                transition: "all 0.3s ease-in-out",
-                textTransform: "capitalize",
-                borderRadius: `2`,
-                "&:hover": {
-                  color: "background",
-                  backgroundColor: "soft",
-                },
-              }}
-              to={node.path}
-            >
-              {node.path.slice(10, node.path.length - 1)}
-            </Link>
-          ))}
+          {data.examples.edges.map(({ node }, index) => {
+            const nodeTitle = node.path.slice(10, node.path.length - 1)
+            return (
+              <Link
+                key={index}
+                sx={{
+                  padding: `0.5rem`,
+                  textDecoration: "none",
+                  color: nodeTitle === locationTitle ? "yellow" : "bright",
+                  fontWeight: 700,
+                  transition: "all 0.3s ease-in-out",
+                  textTransform: "capitalize",
+                  borderRadius: `2`,
+                  "&:hover": {
+                    color:
+                      nodeTitle === locationTitle ? "yellow" : "background",
+                    backgroundColor: "soft",
+                  },
+                }}
+                to={node.path}
+              >
+                {nodeTitle}
+              </Link>
+            )
+          })}
         </nav>
         <main>{children}</main>
       </div>
