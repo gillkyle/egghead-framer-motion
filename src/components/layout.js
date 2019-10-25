@@ -1,30 +1,31 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import { Fragment } from "react"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query LayoutQuery {
       site {
         siteMetadata {
           title
         }
       }
+      examples: allSitePage(filter: { path: { regex: "/examples/" } }) {
+        edges {
+          node {
+            id
+            path
+          }
+        }
+      }
     }
   `)
-
   return (
-    <>
+    <div>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
@@ -34,19 +35,41 @@ const Layout = ({ children }) => {
           paddingTop: 0,
         }}
       >
+        <nav
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            placeItems: "center",
+            height: 30,
+            mb: 20,
+          }}
+        >
+          {data.examples.edges.map(({ node }, index) => (
+            <Link
+              key={index}
+              sx={{
+                padding: `0.5rem`,
+                textDecoration: "none",
+                color: "bright",
+                fontWeight: 700,
+                transition: "all 0.3s ease-in-out",
+                textTransform: "capitalize",
+                borderRadius: `2`,
+                "&:hover": {
+                  color: "background",
+                  backgroundColor: "soft",
+                },
+              }}
+              to={node.path}
+            >
+              {node.path.slice(10, node.path.length - 1)}
+            </Link>
+          ))}
+        </nav>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
-    </>
+    </div>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout
