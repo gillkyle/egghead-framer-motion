@@ -4,8 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { FiChevronRight, FiArrowUpCircle } from "react-icons/fi"
 
-import Layout from "../../components/layout"
-import Section from "../../components/section"
+import ExampleLayout from "../../components/example-layout"
 
 const containerStyles = {
   display: `flex`,
@@ -45,32 +44,30 @@ export default ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <Layout location={location}>
-      <Section>
+    <ExampleLayout location={location}>
+      <motion.div
+        sx={{ ...containerStyles }}
+        initial={`closed`}
+        animate={isOpen ? `open` : `closed`}
+        variants={containerVariants}
+      >
         <motion.div
-          sx={{ ...containerStyles }}
-          initial={`closed`}
-          animate={isOpen ? `open` : `closed`}
-          variants={containerVariants}
+          whileHover={{ scale: 1.1 }}
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <FiChevronRight size={48} />
-          </motion.div>
-          {[0, 180, 270, 90].map(value => (
-            <motion.div
-              initial={{ opacity: 0 }}
-              variants={childVariants}
-              style={{ rotate: value }}
-            >
-              <FiArrowUpCircle size={36} />
-            </motion.div>
-          ))}
+          <FiChevronRight size={48} />
         </motion.div>
-      </Section>
-    </Layout>
+        {[0, 180, 270, 90].map(value => (
+          <motion.div
+            initial={{ opacity: 0 }}
+            variants={childVariants}
+            style={{ rotate: value }}
+          >
+            <FiArrowUpCircle size={36} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </ExampleLayout>
   )
 }

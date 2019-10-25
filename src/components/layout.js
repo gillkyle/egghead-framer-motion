@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import { Fragment } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
@@ -24,10 +23,8 @@ const Layout = ({ children, location }) => {
       }
     }
   `)
-  const locationTitle = location.pathname.slice(
-    10,
-    location.pathname.length - 1
-  )
+  const locationTitle =
+    location && location.pathname.slice(13, location.pathname.length - 1)
   return (
     <div>
       <Header siteTitle={data.site.siteMetadata.title} />
@@ -44,12 +41,13 @@ const Layout = ({ children, location }) => {
             display: "flex",
             flexDirection: "row",
             placeItems: "center",
-            height: 30,
+            whiteSpace: `nowrap`,
+            overflowX: `auto`,
             mb: 20,
           }}
         >
           {data.examples.edges.map(({ node }, index) => {
-            const nodeTitle = node.path.slice(10, node.path.length - 1)
+            const nodeTitle = node.path.slice(13, node.path.length - 1)
             return (
               <Link
                 key={index}
