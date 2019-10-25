@@ -38,9 +38,11 @@ const Layout = ({ children, location }) => {
       >
         <nav
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            placeItems: "center",
+            display: `flex`,
+            flexDirection: `row`,
+            flexWrap: `wrap`,
+            alignItems: `center`,
+            justifyContent: `center`,
             whiteSpace: `nowrap`,
             overflowX: `auto`,
             mb: 20,

@@ -144,51 +144,14 @@ button::-moz-focus-inner {
 button:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
-fieldset {
-  border: 1px solid silver;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-textarea {
-  overflow: auto;
-}
-[type="checkbox"],
-[type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-[type="search"] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
-}
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
 html {
   font: 112.5%/1.45em georgia, serif;
   box-sizing: border-box;
   overflow-y: scroll;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 * {
   box-sizing: inherit;
