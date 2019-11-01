@@ -9,13 +9,12 @@ export default ({ location }) => (
   <ExampleLayout location={location} canReset={true}>
     <motion.div
       animate={{
-        x: [0, 25, 75, 200],
+        x: [0, 25, 50, 50, 200],
       }}
       transition={{
-        times: [0, 0.2, 0.5, 1],
+        times: [0, 0.2, 0.4, 0.6, 1],
         duration: 2,
         ease: "easeInOut",
-        repeatDelay: 0.5,
       }}
     >
       <FiCrosshair size={48} />
