@@ -36,7 +36,7 @@ const containerVariants = {
 }
 
 const childVariants = {
-  open: { opacity: 0.8 },
+  open: { opacity: 1 },
   closed: { opacity: 0 },
 }
 
